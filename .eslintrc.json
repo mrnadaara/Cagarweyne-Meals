@@ -20,5 +20,9 @@
     "linebreak-style": "off",
     "no-shadow": "off",
     "arrow-parens": ["error", "as-needed"]
-  }
+  },
+  "ignorePatterns": [
+    "dist/",
+    "build/"
+  ]
 }
