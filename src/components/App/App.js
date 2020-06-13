@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap';
 import './App.scss';
 import HomePage from '../../pages/homepage/homepage';
+import Header from '../header/header';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
         </Switch>
