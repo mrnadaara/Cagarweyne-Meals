@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
+import './catalogue-list.scss';
 import CatalogueListItem from '../catalogue-list-item/catalogue-list-item';
 
 const CatalogueList = ({ mealsList }) => (
@@ -10,7 +11,7 @@ const CatalogueList = ({ mealsList }) => (
     <Row>
       {
         mealsList.map(meal => (
-          <Col xs={12} sm={6} md={6} lg={3} key={meal.idMeal}>
+          <Col className="column" xs={12} sm={6} md={6} lg={3} key={meal.idMeal}>
             <CatalogueListItem meal={meal} />
           </Col>
         ))
