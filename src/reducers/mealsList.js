@@ -1,1 +1,25 @@
-export default (state = []) => state;
+import { FETCH_MEALS, FETCH_MEALS_ERROR } from '../actions/types';
+
+const INITIAL_STATE = {
+  meals: [],
+  error: '',
+};
+
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case FETCH_MEALS:
+      return {
+        ...state,
+        meals: action.payload,
+        error: '',
+      };
+    case FETCH_MEALS_ERROR:
+      return {
+        ...state,
+        meals: [],
+        error: 'Cannot fetch meals',
+      };
+    default:
+      return state;
+  }
+};
