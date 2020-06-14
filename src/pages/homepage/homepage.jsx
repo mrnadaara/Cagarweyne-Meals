@@ -6,6 +6,7 @@ import { fetchMeals } from '../../actions';
 
 import './homepage.scss';
 import CatalogueList from '../../components/catalogue-list/catalogue-list';
+import Search from '../../components/search/search';
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div>
-        <p>search</p>
+        <Search />
         <CatalogueList />
       </div>
     );
