@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFilters } from '../../actions';
 
-import './homepage.scss';
 import CatalogueList from '../../components/catalogue-list/catalogue-list';
 import Search from '../../components/search/search';
 import Filter from '../../components/filter/filter';
