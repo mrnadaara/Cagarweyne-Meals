@@ -1,21 +1,24 @@
-import { FETCH_MEALS, FETCH_MEALS_ERROR } from '../actions/types';
+import { FETCH_FILTERS, FETCH_FILTERS_ERROR } from '../actions/types';
 
 const INITIAL_STATE = {
-  meals: [],
+  categories: [],
+  areas: [],
+  ingredients: [],
   error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FETCH_MEALS:
+    case FETCH_FILTERS:
       return {
         ...state,
-        meals: action.payload,
+        ...action.payload,
         error: '',
       };
-    case FETCH_MEALS_ERROR:
+    case FETCH_FILTERS_ERROR:
       return {
         ...INITIAL_STATE,
+        meals: [],
         error: action.payload,
       };
     default:
