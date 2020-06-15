@@ -2,22 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMeals } from '../../actions';
+import { fetchFilters } from '../../actions';
 
 import './homepage.scss';
 import CatalogueList from '../../components/catalogue-list/catalogue-list';
 import Search from '../../components/search/search';
+import Filter from '../../components/filter/filter';
 
 class HomePage extends React.Component {
   componentDidMount() {
-    const { fetchMeals } = this.props;
-    fetchMeals();
+    const { fetchFilters } = this.props;
+    fetchFilters();
   }
 
   render() {
     return (
       <div>
         <Search />
+        <Filter />
         <CatalogueList />
       </div>
     );
@@ -25,15 +27,15 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  fetchMeals: PropTypes.func,
+  fetchFilters: PropTypes.func,
 };
 
 HomePage.defaultProps = {
-  fetchMeals: () => {},
+  fetchFilters: () => {},
 };
 
 const mapDispatchToProps = action => bindActionCreators({
-  fetchMeals,
+  fetchFilters,
 }, action);
 
 export default connect(null, mapDispatchToProps)(HomePage);

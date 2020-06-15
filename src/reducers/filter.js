@@ -17,9 +17,9 @@ export default (state = INITIAL_STATE, action) => {
       };
     case FETCH_FILTERS_ERROR:
       return {
-        ...state,
+        ...INITIAL_STATE,
         meals: [],
-        error: 'Cannot fetch filters',
+        error: action.payload,
       };
     default:
       return state;

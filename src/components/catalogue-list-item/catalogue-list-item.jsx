@@ -9,7 +9,7 @@ const CatalogueListItem = ({ meal, history }) => (
     <Card.Body>
       <Card.Title>{meal.strMeal}</Card.Title>
       <Card.Text>
-        {`${meal.strCategory}, ${meal.strArea}`}
+        {meal.strTags}
       </Card.Text>
       <Button
         variant="primary"
