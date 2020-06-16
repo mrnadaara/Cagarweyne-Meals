@@ -14,7 +14,7 @@ const CatalogueListItem = ({ meal, history }) => (
       <Button
         variant="primary"
         type="button"
-        onClick={() => history.push({ pathname: '/mealItem', state: { meal } })}
+        onClick={() => history.push({ pathname: '/mealInfo', state: { meal } })}
       >
         Check it out
       </Button>
