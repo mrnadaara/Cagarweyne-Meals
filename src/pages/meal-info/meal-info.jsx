@@ -5,11 +5,11 @@ import YouTube from 'react-youtube';
 import {
   Container, Col, Row, Tabs, Tab,
 } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 class MealInfo extends React.Component {
   renderIngredients = () => {
-    const { location } = this.props;
-    const { meal } = location.state;
+    const { meal } = this.props;
     const string = [];
 
     for (let i = 0; i < 20; i += 1) {
@@ -28,8 +28,7 @@ class MealInfo extends React.Component {
   }
 
   render() {
-    const { location } = this.props;
-    const { meal } = location.state;
+    const { meal } = this.props;
     const opts = {
       height: '500',
     };
@@ -60,7 +59,7 @@ class MealInfo extends React.Component {
                 </ol>
               </Tab>
               <Tab eventKey="video" title="Video">
-                {!meal.strMeal ? null : <YouTube className="w-100" videoId={this.extractId(meal.strYoutube)} opts={opts} />}
+                {!meal.strYoutube ? null : <YouTube className="w-100" videoId={this.extractId(meal.strYoutube)} opts={opts} />}
               </Tab>
             </Tabs>
           </Col>
@@ -71,11 +70,17 @@ class MealInfo extends React.Component {
 }
 
 MealInfo.propTypes = {
-  location: PropTypes.objectOf(PropTypes.string),
+  meal: PropTypes.objectOf(PropTypes.string),
 };
 
 MealInfo.defaultProps = {
-  location: {},
+  meal: {},
 };
 
-export default MealInfo;
+const mapStateToProps = ({ mealsList }) => (
+  {
+    meal: mealsList.selectedMeal,
+  }
+);
+
+export default connect(mapStateToProps)(MealInfo);

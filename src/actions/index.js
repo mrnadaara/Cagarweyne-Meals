@@ -1,20 +1,60 @@
 import {
   FETCH_MEALS, FETCH_MEALS_ERROR, FETCH_FILTERS_ERROR, FETCH_FILTERS,
+  SELECT_MEAL,
 } from './types';
+
+const fetchMealSuccess = payload => (
+  {
+    type: FETCH_MEALS,
+    payload,
+  }
+);
+
+export const selectMeal = payload => (
+  {
+    type: SELECT_MEAL,
+    payload,
+  }
+);
+
+const fetchMealError = payload => (
+  {
+    type: FETCH_MEALS_ERROR,
+    payload,
+  }
+);
+
+const fetchFilterSuccess = payload => (
+  {
+    type: FETCH_FILTERS,
+    payload,
+  }
+);
+
+const fetchFilterError = payload => (
+  {
+    type: FETCH_FILTERS_ERROR,
+    payload,
+  }
+);
 
 export const fetchMeals = (query = 'A') => async dispatch => {
   try {
     const result = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
     const response = await result.json();
-    dispatch({
-      type: FETCH_MEALS,
-      payload: !response.meals ? [] : response.meals,
-    });
+    dispatch(fetchMealSuccess(!response.meals ? [] : response.meals));
   } catch (e) {
-    dispatch({
-      type: FETCH_MEALS_ERROR,
-      payload: e.message,
-    });
+    dispatch(fetchMealError(e.message));
+  }
+};
+
+export const fetchMealById = query => async dispatch => {
+  try {
+    const result = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${query}`);
+    const response = await result.json();
+    dispatch(selectMeal(!response.meals ? [] : response.meals[0]));
+  } catch (e) {
+    dispatch(fetchMealError(e.message));
   }
 };
 
@@ -30,15 +70,9 @@ export const fetchByFilter = (query, type) => async dispatch => {
   try {
     const result = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?${filter}=${query}`);
     const response = await result.json();
-    dispatch({
-      type: FETCH_MEALS,
-      payload: !response.meals ? [] : response.meals,
-    });
+    dispatch(fetchMealSuccess(!response.meals ? [] : response.meals));
   } catch (e) {
-    dispatch({
-      type: FETCH_MEALS_ERROR,
-      payload: e.message,
-    });
+    dispatch(fetchMealError(e.message));
   }
 };
 
@@ -83,22 +117,13 @@ export const fetchFilters = () => async dispatch => {
     const result = await Promise.all(
       [fetchAllMeals(), fetchArea(), fetchCategory(), fetchIngredients()],
     );
-    dispatch({
-      type: FETCH_FILTERS,
-      payload: {
-        categories: result[2].meals,
-        areas: result[1].meals,
-        ingredients: result[3].meals,
-      },
-    });
-    dispatch({
-      type: FETCH_MEALS,
-      payload: result[0].meals,
-    });
+    dispatch(fetchFilterSuccess({
+      categories: result[2].meals,
+      areas: result[1].meals,
+      ingredients: result[3].meals,
+    }));
+    dispatch(fetchMealSuccess(result[0].meals));
   } catch (e) {
-    dispatch({
-      type: FETCH_FILTERS_ERROR,
-      payload: e.message,
-    });
+    dispatch(fetchFilterError(e.message));
   }
 };
