@@ -4,7 +4,7 @@
 
 ![alt text](./docs/demo.png)
 
-You can click [here for a live demo of this project](https://mmcalculator.herokuapp.com/).
+You can click [here for a live demo of this project](https://cagarweynemeals.herokuapp.com/).
 
 ## Get Started
 
