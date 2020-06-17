@@ -1,7 +1,8 @@
-import { FETCH_MEALS, FETCH_MEALS_ERROR } from '../actions/types';
+import { FETCH_MEALS, FETCH_MEALS_ERROR, SELECT_MEAL } from '../actions/types';
 
 const INITIAL_STATE = {
   meals: [],
+  selectedMeal: {},
   error: '',
 };
 
@@ -17,6 +18,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         error: action.payload,
+      };
+    case SELECT_MEAL:
+      return {
+        ...state,
+        selectedMeal: action.payload,
       };
     default:
       return state;
