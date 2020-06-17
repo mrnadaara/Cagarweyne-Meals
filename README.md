@@ -2,7 +2,7 @@
 
 ## A catalogue you can use to search up your favourite meals
 
-![alt text](./docs/demo.png)
+![alt text](./docs/demo.PNG)
 
 You can click [here for a live demo of this project](https://cagarweynemeals.herokuapp.com/).
 
