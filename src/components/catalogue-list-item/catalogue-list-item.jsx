@@ -44,14 +44,26 @@ class CatalogueListItem extends React.Component {
 }
 
 CatalogueListItem.propTypes = {
-  meal: PropTypes.arrayOf(PropTypes.string),
+  meal: PropTypes.objectOf(PropTypes.string),
   fetchMealById: PropTypes.func,
-  history: PropTypes.objectOf(PropTypes.string),
+  history: PropTypes.shape({
+    action: PropTypes.string,
+    block: PropTypes.func,
+    createHref: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    length: PropTypes.number,
+    listen: PropTypes.func,
+    location: PropTypes.object,
+    push: PropTypes.func,
+    replace: PropTypes.func,
+  }),
   selectMeal: PropTypes.func,
 };
 
 CatalogueListItem.defaultProps = {
-  meal: [],
+  meal: {},
   fetchMealById: () => {},
   selectMeal: () => {},
   history: {},
