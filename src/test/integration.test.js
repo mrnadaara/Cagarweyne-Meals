@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { render, screen } from '../test-utils';
+import { screen } from '@testing-library/react';
+import render from '../test-utils';
 import CatalogueList from '../components/catalogue-list/catalogue-list';
 
 it('Renders the connected app with initialState', () => {
