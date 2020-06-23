@@ -59,7 +59,7 @@ class Filter extends React.Component {
                 <option>...</option>
                 {
                   categoryList.map(category => (
-                    <option key={category}>{category.strCategory}</option>
+                    <option key={category.strCategory.split(' ').join('')}>{category.strCategory}</option>
                   ))
                 }
               </Form.Control>
@@ -74,7 +74,7 @@ class Filter extends React.Component {
                 <option>...</option>
                 {
                   areaList.map(area => (
-                    <option key={area}>{area.strArea}</option>
+                    <option key={area.strArea}>{area.strArea.split(' ').join('')}</option>
                   ))
                 }
               </Form.Control>
@@ -88,8 +88,8 @@ class Filter extends React.Component {
               <Form.Control id="ingredient" value={ingredient} onChange={this.handleChange} as="select" size="lg">
                 <option>...</option>
                 {
-                  ingredientList.map(ingredient => (
-                    <option key={ingredient}>{ingredient.strIngredient}</option>
+                  ingredientList.map((ingredient, index) => (
+                    <option key={`${index + 1}${ingredient.strIngredient.split(' ').join('')}`}>{ingredient.strIngredient}</option>
                   ))
                 }
               </Form.Control>
